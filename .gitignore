@@ -1,0 +1,20 @@
+# DDEV
+.ddev/
+
+# Composer
+/vendor/
+composer.lock
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# IDEs e editores
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+logs/ 
