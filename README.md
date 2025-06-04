@@ -51,7 +51,9 @@ O site estará disponível em: <http://localhost:8000>
 
 - `index.html` - Página principal do site
 - `vendor/` - Dependências do Composer
-- `src/` - Código fonte da aplicação
+- `composer.json` - Configuração do Composer e dependências do projeto
+- `composer.lock` - Versões exatas das dependências instaladas
+- `.ddev/` - Configurações do ambiente de desenvolvimento DDEV
 
 ## Desenvolvimento
 
