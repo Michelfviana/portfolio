@@ -1,11 +1,32 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Portfolio | Full Stack Developer</title>
+    <meta name="description" content="Full Stack Developer Portfolio - Specialist in Python, PHP, JavaScript, and modern technologies">
+    <meta name="keywords" content="Full Stack Developer, Python, PHP, JavaScript, Web Development">
+    <meta name="author" content="Michel Ferreira">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-portfolio-url.com/">
+    <meta property="og:title" content="Portfolio | Full Stack Developer">
+    <meta property="og:description" content="Full Stack Developer Portfolio - Specialist in Python, PHP, JavaScript, and modern technologies">
+    <meta property="og:image" content="https://your-portfolio-url.com/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-portfolio-url.com/">
+    <meta property="twitter:title" content="Portfolio | Full Stack Developer">
+    <meta property="twitter:description" content="Full Stack Developer Portfolio - Specialist in Python, PHP, JavaScript, and modern technologies">
+    <meta property="twitter:image" content="https://your-portfolio-url.com/og-image.jpg">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Portfolio | Full Stack Developer</title>
+
 </head>
 
 <body>
@@ -19,6 +40,9 @@
     <nav>
         <div class="nav-container">
             <div class="logo">DEV.PORTFOLIO</div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -74,9 +98,9 @@
                 <p>My proficiency in version control using Git, along with advanced English and familiarity with agile
                     methodologies like Scrum, enables me to collaborate effectively in multidisciplinary teams.</p>
 
-                <p>I possess expertise in essential technologies such as Docker and responsive design, always prioritizing
-                    usability. I stand out for adopting a solution-centered approach, ensuring the delivery of high-quality
-                    results with robust and scalable systems.</p>
+                <p>I possess expertise in essential technologies such as Docker and responsive design, always
+                    prioritizing usability. I stand out for adopting a solution-centered approach, ensuring the delivery of
+                    high-quality results with robust and scalable systems.</p>
             </div>
         </div>
     </section>
@@ -136,72 +160,49 @@
         <div class="projects-grid">
             <div class="project-card">
                 <div class="project-header">
-                    <h3>Complete E-commerce</h3>
-                    <div class="project-type">Full Stack Web Application</div>
+                    <h3>IPS</h3>
+                    <div class="project-type">Image processing Software</div>
                 </div>
                 <div class="project-content">
                     <p class="project-description">
-                        E-commerce platform developed with Django and React, including payment system,
-                        inventory management, and complete admin panel.
+                        A Python-based software for image processing using a graphical interface built with Tkinter.
+                        This application allows users to load images, convert them to grayscale, apply filters, adjust
+                        brightness and contrast, and perform geometric transformations. It uses OpenCV for image
+                        manipulation and PIL (Pillow) for displaying images.
                     </p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Django</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Tkinter</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">Numpy</span>
+                        <span class="tech-tag">Matplotlib</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">View Demo →</a>
-                        <a href="#" class="project-link">GitHub →</a>
+                        <a href="https://github.com/Michelfviana/IPS_2" class="project-link">GitHub →</a>
                     </div>
                 </div>
             </div>
 
             <div class="project-card">
                 <div class="project-header">
-                    <h3>Management System</h3>
-                    <div class="project-type">Enterprise Application</div>
+                    <h3>Intelligent Agent System</h3>
+                    <div class="project-type">AI agent</div>
                 </div>
                 <div class="project-content">
                     <p class="project-description">
-                        Corporate system for human resources and financial management, developed with PHP Laravel and
-                        MySQL, featuring real-time dashboard.
+                        This project implements an intelligent agent that assists in choosing the most suitable location
+                        for
+                        performing activities, considering characteristics such as weather, time, and environment. It
+                        uses
+                        the Python programming language and Prolog logical system for rule inference.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">PHP</span>
-                        <span class="tech-tag">Laravel</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Vue.js</span>
-                        <span class="tech-tag">REST API</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PySwip</span>
+                        <span class="tech-tag">SWI-Prolog</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">Learn More →</a>
-                        <a href="#" class="project-link">Documentation →</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>News Portal</h3>
-                    <div class="project-type">Custom CMS</div>
-                </div>
-                <div class="project-content">
-                    <p class="project-description">
-                        News portal developed in Drupal with custom modules, commenting system, and
-                        social media integration.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Drupal</span>
-                        <span class="tech-tag">PHP</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">SASS</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">Visit Site →</a>
-                        <a href="#" class="project-link">Code →</a>
+                        <a href="https://github.com/Michelfviana/intelligent-agent-project" class="project-link">GitHub →</a>
                     </div>
                 </div>
             </div>
@@ -230,6 +231,10 @@
             </a>
         </div>
     </section>
+
+    <button id="back-to-top" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>
