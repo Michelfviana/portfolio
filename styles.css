@@ -1,3 +1,19 @@
+/* Torna o card inteiro clicável e remove sublinhado */
+.project-card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.project-card-link:hover,
+.project-card-link:focus {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12), 0 1.5px 6px rgba(0, 0, 0, 0.10);
+    transform: translateY(-2px) scale(1.01);
+    text-decoration: none;
+    cursor: pointer;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -476,11 +492,6 @@ nav:hover {
     border: 1px solid rgba(78, 205, 196, 0.3);
 }
 
-.project-links {
-    display: flex;
-    gap: 15px;
-}
-
 .project-link {
     color: #ff6b6b;
     text-decoration: none;
@@ -606,16 +617,6 @@ nav:hover {
     100% {
         transform: translateY(0px) rotate(360deg);
     }
-}
-
-/* Scroll indicator */
-.scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #ffffff;
-    animation: bounce 2s infinite;
 }
 
 @keyframes bounce {
