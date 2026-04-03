@@ -47,7 +47,7 @@ portfolio/
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/portfolio.git
+   git clone https://github.com/Michelfviana/portfolio.git
    cd portfolio
    ```
 
