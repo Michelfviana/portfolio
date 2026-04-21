@@ -2,7 +2,7 @@
 
 A dark terminal-inspired portfolio website built with vanilla HTML, CSS, and JavaScript. Designed with a CryptoWatch-style aesthetic featuring a real-time scrolling ticker, typewriter effects, animated stats, and a full professional profile.
 
-![Portfolio Screenshot](assets/images/Screenshot_20250614_112637.png)
+![Portfolio Screenshot](image.png)
 
 ## Live Demo
 
@@ -36,16 +36,16 @@ portfolio/
 
 ## Sections
 
-| Section       | Content                                                                              |
-| ------------- | ------------------------------------------------------------------------------------ |
-| Hero          | Name, title, terminal typewriter, profile JSON window                                |
-| About         | 3 professional pillars, animated stat counters                                       |
-| Experience    | Timeline with 5 roles (Total Express, AgattiTech, Gov Rondônia, Before, Energisa)   |
-| Skills        | Heatmap grid across 8 categories with proficiency levels                             |
-| Projects      | 7 projects (CryptoWatch, PIC-1, Intelligent Agent, Wine SVM, IPS v2, AI Chat, MiniLang) |
-| Education     | Degree, English certification, achievements (3rd place Ideathon SP 2025)             |
-| Certifications| 20+ certs filterable by category                                                     |
-| Contact       | Email, LinkedIn, GitHub, WhatsApp                                                    |
+| Section       | Content                                                                                |
+| ------------- | ------------------------------------------------------------------------------------   |
+| Hero          | Name, title, terminal typewriter, profile JSON window                                  |
+| About         | 3 professional pillars, animated stat counters                                         |
+| Experience    | Timeline with 5 roles (Total Express, AgattiTech, Gov Rondônia, Before, Energisa)      |
+| Skills        | Heatmap grid across 8 categories with proficiency levels                               |
+| Projects      | 7 projects (CryptoWatch, PIC-1, Intelligent Agent, Wine SVM, IPS v2, AI Chat, MiniLang)|
+| Education     | Degree, English certification, achievements (3rd place Ideathon SP 2025)               |
+| Certifications| 20+ certs filterable by category                                                       |
+| Contact       | Email, LinkedIn, GitHub, WhatsApp                                                      |
 
 ## Tech Stack
 
