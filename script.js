@@ -1,133 +1,53 @@
-// Smooth scrolling
+// ============================================================
+// Navigation
+// ============================================================
+
+const navbar = document.getElementById('navbar');
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navLinksContainer = document.querySelector('.nav-links');
+
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    backToTopButton.classList.toggle('visible', window.pageYOffset > 300);
+    highlightActiveSection();
+});
+
+mobileMenuBtn.addEventListener('click', () => {
+    navLinksContainer.classList.toggle('active');
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinksContainer.classList.remove('active');
+    });
+});
+
+document.addEventListener('click', (e) => {
+    if (!navLinksContainer.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        navLinksContainer.classList.remove('active');
+    }
+});
+
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            const offset = 90;
+            const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
         }
     });
 });
 
-// Navbar transparency on scroll
-window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 100) {
-        nav.style.background = 'rgba(10, 10, 10, 0.95)';
-    } else {
-        nav.style.background = 'rgba(10, 10, 10, 0.1)';
-    }
-});
-
-// Parallax effect for floating shapes
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const shapes = document.querySelectorAll('.shape');
-    shapes.forEach((shape, index) => {
-        const speed = (index + 1) * 0.5;
-        shape.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-});
-
-// Animation on scroll observer
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe skill categories
-document.querySelectorAll('.skill-category').forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(50px)';
-    card.style.transition = `all 0.6s ease ${index * 0.2}s`;
-    observer.observe(card);
-});
-
-// Observe project cards
-document.querySelectorAll('.project-card').forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(50px)';
-    card.style.transition = `all 0.6s ease ${index * 0.3}s`;
-    observer.observe(card);
-});
-
-// Observe stat items
-document.querySelectorAll('.stat-item').forEach((item, index) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(30px)';
-    item.style.transition = `all 0.5s ease ${index * 0.1}s`;
-    observer.observe(item);
-});
-
-// Counter animation for stats
-const animateCounter = (element, target) => {
-    let current = 0;
-    const increment = target / 100;
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            current = target;
-            clearInterval(timer);
-        }
-        element.textContent = Math.floor(current) + (target === 100 ? '%' : '+');
-    }, 20);
-};
-
-// Trigger counter animation when stats come into view
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const number = entry.target.querySelector('.stat-number');
-            const text = number.textContent;
-            const value = parseInt(text);
-            animateCounter(number, value);
-            statsObserver.unobserve(entry.target);
-        }
-    });
-});
-
-document.querySelectorAll('.stat-item').forEach(item => {
-    statsObserver.observe(item);
-});
-
-// Typing effect for hero subtitle
-const subtitle = document.querySelector('.hero .subtitle');
-const originalText = subtitle.textContent;
-subtitle.textContent = '';
-
-let i = 0;
-const typeWriter = () => {
-    if (i < originalText.length) {
-        subtitle.textContent += originalText.charAt(i);
-        i++;
-        setTimeout(typeWriter, 100);
-    }
-};
-
-setTimeout(typeWriter, 1000);
-
-// Add active navigation highlighting
-window.addEventListener('scroll', () => {
+function highlightActiveSection() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
-
     let current = '';
+
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 200)) {
+        if (scrollY >= section.offsetTop - 150) {
             current = section.getAttribute('id');
         }
     });
@@ -138,47 +58,171 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
-});
+}
 
-// Back to Top Button
+// ============================================================
+// Back to Top
+// ============================================================
+
 const backToTopButton = document.getElementById('back-to-top');
 
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        backToTopButton.classList.add('visible');
-    } else {
-        backToTopButton.classList.remove('visible');
-    }
-});
-
 backToTopButton.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Mobile Menu
-const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-const navLinks = document.querySelector('.nav-links');
+// ============================================================
+// Terminal typewriter effect in hero
+// ============================================================
 
-mobileMenuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    mobileMenuBtn.classList.toggle('active');
-});
+const terminalCmd = document.getElementById('terminal-cmd');
+const commands = [
+    'connect --user michelfviana',
+    'load profile.json',
+    'deploy --env production',
+    'git push origin main',
+    'php artisan serve',
+    'docker compose up -d',
+];
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        mobileMenuBtn.classList.remove('active');
-    });
-});
+let cmdIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typeDelay = 100;
 
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-        navLinks.classList.remove('active');
-        mobileMenuBtn.classList.remove('active');
+function typeTerminal() {
+    const current = commands[cmdIndex];
+
+    if (!isDeleting) {
+        terminalCmd.textContent = current.slice(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === current.length) {
+            isDeleting = true;
+            typeDelay = 2200;
+        } else {
+            typeDelay = 80 + Math.random() * 40;
+        }
+    } else {
+        terminalCmd.textContent = current.slice(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+            isDeleting = false;
+            cmdIndex = (cmdIndex + 1) % commands.length;
+            typeDelay = 400;
+        } else {
+            typeDelay = 45;
+        }
     }
-}); 
+
+    setTimeout(typeTerminal, typeDelay);
+}
+
+setTimeout(typeTerminal, 1200);
+
+// ============================================================
+// Scroll Reveal
+// ============================================================
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+function setupReveal(selector, delay = 0) {
+    document.querySelectorAll(selector).forEach((el, i) => {
+        el.classList.add('reveal');
+        el.style.transitionDelay = `${delay + i * 0.08}s`;
+        revealObserver.observe(el);
+    });
+}
+
+setupReveal('.stat-card', 0);
+setupReveal('.pillar-card', 0);
+setupReveal('.timeline-item', 0);
+setupReveal('.skill-group', 0);
+setupReveal('.project-card', 0);
+setupReveal('.edu-card', 0);
+setupReveal('.achievement-card', 0);
+setupReveal('.cert-card', 0);
+setupReveal('.contact-card', 0);
+
+// ============================================================
+// Counter animation for stats
+// ============================================================
+
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.dataset.target);
+            let current = 0;
+            const steps = 60;
+            const increment = target / steps;
+            const timer = setInterval(() => {
+                current = Math.min(current + increment, target);
+                el.textContent = Math.floor(current);
+                if (current >= target) clearInterval(timer);
+            }, 25);
+            counterObserver.unobserve(el);
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-value[data-target]').forEach(el => {
+    counterObserver.observe(el);
+});
+
+// ============================================================
+// Certification filter
+// ============================================================
+
+const filterBtns = document.querySelectorAll('.cert-filter');
+const certCards = document.querySelectorAll('.cert-card');
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        certCards.forEach(card => {
+            if (filter === 'all' || card.dataset.cat === filter) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    });
+});
+
+// ============================================================
+// Ticker pause on hover
+// ============================================================
+
+const tickerTrack = document.querySelector('.ticker-track');
+if (tickerTrack) {
+    tickerTrack.addEventListener('mouseenter', () => {
+        tickerTrack.style.animationPlayState = 'paused';
+    });
+    tickerTrack.addEventListener('mouseleave', () => {
+        tickerTrack.style.animationPlayState = 'running';
+    });
+}
+
+// ============================================================
+// Subtle cursor glow effect on project cards
+// ============================================================
+
+document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouse-x', x + '%');
+        card.style.setProperty('--mouse-y', y + '%');
+    });
+});
