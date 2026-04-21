@@ -115,7 +115,8 @@ body::before {
 .ticker-track-wrapper {
     flex: 1;
     overflow: hidden;
-    mask-image: linear-gradient(90deg, transparent 0, black 30px, black calc(100% - 30px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
 }
 
 .ticker-track {
@@ -263,27 +264,28 @@ nav.scrolled {
 .hero {
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 120px 50px 80px;
+    padding: 140px 50px 80px;
     position: relative;
     overflow: hidden;
 }
 
 .grid-overlay {
     position: absolute;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     background:
         radial-gradient(ellipse 80% 60% at 60% 50%, rgba(0, 208, 132, 0.04) 0%, transparent 70%),
         radial-gradient(ellipse 60% 80% at 10% 80%, rgba(34, 211, 238, 0.05) 0%, transparent 60%);
     pointer-events: none;
+    z-index: 0;
 }
-
-.hero > * { position: relative; z-index: 1; }
 
 .hero-content {
     flex: 1;
     max-width: 660px;
+    position: relative;
+    z-index: 1;
     animation: fadeUp 0.9s ease both;
 }
 
@@ -291,6 +293,8 @@ nav.scrolled {
     flex: 1;
     max-width: 440px;
     margin-left: 60px;
+    position: relative;
+    z-index: 1;
     animation: fadeUp 0.9s ease 0.3s both;
 }
 
@@ -429,11 +433,11 @@ nav.scrolled {
 
 /* Code Window */
 .code-window {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
+    background: #0d1624;
+    border: 1px solid #243044;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(34, 211, 238, 0.08), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 .code-window-header {
@@ -441,8 +445,8 @@ nav.scrolled {
     align-items: center;
     gap: 8px;
     padding: 12px 16px;
-    background: var(--bg-secondary);
-    border-bottom: 1px solid var(--border);
+    background: #0a1020;
+    border-bottom: 1px solid #243044;
 }
 
 .dot {
