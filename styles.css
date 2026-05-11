@@ -1540,14 +1540,31 @@ footer .footer-logo {
 @media (max-width: 1100px) {
     .hero {
         flex-direction: column;
+        align-items: center;
         text-align: center;
         padding: 140px 30px 80px;
     }
 
     .hero-content { max-width: 100%; }
-    .hero-visual { margin-left: 0; margin-top: 48px; max-width: 100%; }
+    .hero-visual { margin: 48px auto 0; max-width: 100%; }
     .cta-buttons { justify-content: center; }
     .hero-location { justify-content: center; }
+
+    .section-label,
+    .section-title {
+        text-align: center;
+    }
+
+    .section-title::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .contact-desc,
+    .contact-grid {
+        margin-left: auto;
+        margin-right: auto;
+    }
 
     .project-card.featured { grid-column: span 1; }
 }
