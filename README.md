@@ -1,84 +1,61 @@
-# Michel Ferreira — Software Engineer Portfolio
+# Michel Ferreira — Portfólio
 
-A dark terminal-inspired portfolio website built with vanilla HTML, CSS, and JavaScript. Designed with a CryptoWatch-style aesthetic featuring a real-time scrolling ticker, typewriter effects, animated stats, and a full professional profile.
+Portfólio de Engenharia de Software Full Stack, em português e inglês, construído com HTML, CSS e JavaScript. Mantém o visual escuro inspirado em terminal, com navegação responsiva, animações e filtros de certificações.
 
-![Portfolio Screenshot](image.png)
+O conteúdo foi atualizado com o currículo de 2026 e o perfil público do LinkedIn: sistemas de negócio, integrações, automação, cloud, observabilidade e engenharia aumentada por IA.
 
-## Live Demo
+## Conteúdo
 
-[michelfviana.github.io/portfolio](https://michelfviana.github.io/portfolio/)
+- Perfil profissional e atuação na Total Express, via Leega Consultoria.
+- Cinco experiências: Total Express / Leega, AgattiTech, Governo de Rondônia, Before e Grupo Energisa.
+- Competências organizadas por contexto, incluindo tecnologias de projetos e laboratórios e tecnologias com familiaridade.
+- Doze projetos: SisExtens, SecureChain Audit, Magic Scanner, CryptoWatch, PIC-1, Agente Inteligente, Processamento de Imagem v2, Agente de Chat Inteligente, MiniLang, Forecasting de NO₂ com LSTM, Wine Quality Analysis e Software Security Sins Lab.
+- Destaque de 57+ certificados no perfil.
+- Formação, idiomas, reconhecimentos e catálogo com 58 certificações e cursos: 57 da lista fornecida do LinkedIn e o EHE do currículo, sem duplicações. Inclui datas, códigos de credencial quando informados e filtros por categoria.
+- Contato por e-mail, LinkedIn, GitHub e WhatsApp.
 
-## About
+## Idiomas e GitHub Pages
 
-This portfolio showcases my professional background as a Software Engineer currently working at **Total Express** (via Leega) — Brazil's largest private e-commerce logistics operation. It covers my work history, technical stack, projects, education, and certifications.
+As duas versões são páginas HTML estáticas, com um seletor **PT / EN** sempre visível na navegação:
 
-## Features
+- Português: `index.html` → `https://michelfviana.github.io/portfolio/`
+- Inglês: `en.html` → `https://michelfviana.github.io/portfolio/en.html`
 
-- **CryptoWatch-inspired design** — dark terminal palette (neon green, teal, amber) with CSS grid overlay
-- **Live scrolling ticker** — real-time-style bar cycling through tech stack items
-- **Typewriter terminal** — cycling command-line animation in the hero
-- **Scroll-reveal animations** — Intersection Observer-powered fade-ups throughout
-- **Animated counters** — stats counting up on scroll into view
-- **Certification filter** — filterable grid by category (Security, Cloud, Languages, Data & AI, English)
-- **Full work history timeline** — all 5 companies with tech tags and live indicator for current role
-- **Responsive** — mobile-friendly with collapsible navigation
-- **Zero dependencies** — only Font Awesome and Google Fonts, no frameworks
+O seletor funciona sem JavaScript. Com JavaScript, preserva a seção atual na troca de idioma. As duas páginas compartilham `styles.css` e `script.js` e possuem metadados de idioma, URLs canônicas e links `hreflang`. Os nomes oficiais de cursos e certificados permanecem no idioma original.
 
-## Project Structure
+Para publicar, envie os arquivos para a branch usada pelo GitHub Pages. Se a publicação usar **Deploy from a branch**, selecione essa branch e a pasta **/ (root)** em **Settings → Pages**. Não é necessário servidor de aplicação nem build. A seleção de idioma usa caminhos relativos compatíveis com o subdiretório `/portfolio/`.
+
+Ao atualizar o conteúdo, mantenha `index.html` e `en.html` sincronizados.
+
+## Executar localmente
+
+Abra `index.html` no navegador ou inicie um servidor estático:
+
+```bash
+python -m http.server 8000
+```
+
+Acesse `http://localhost:8000`. Não há dependências para instalar nem etapa de build. Fontes e ícones são carregados por Google Fonts e Font Awesome.
+
+## Estrutura
 
 ```text
 portfolio/
-├── index.html      # Full HTML structure (all sections)
-├── styles.css      # CryptoWatch-inspired styles and animations
-├── script.js       # Typewriter, counters, scroll reveal, cert filter
+├── index.html   # Versão em português (entrada padrão)
+├── en.html      # Versão em inglês
+├── styles.css   # Estilos, responsividade e redução de movimento
+├── script.js    # Navegação, animações, contadores e filtros
+├── image.png    # Captura histórica, anterior à atualização de 2026
 └── README.md
 ```
 
-## Sections
+A navegação mobile informa seu estado a leitores de tela e pode ser fechada com Escape. As animações respeitam a preferência por movimento reduzido. Os números do perfil permanecem legíveis mesmo sem JavaScript.
 
-| Section       | Content                                                                                |
-| ------------- | ------------------------------------------------------------------------------------   |
-| Hero          | Name, title, terminal typewriter, profile JSON window                                  |
-| About         | 3 professional pillars, animated stat counters                                         |
-| Experience    | Timeline with 5 roles (Total Express, AgattiTech, Gov Rondônia, Before, Energisa)      |
-| Skills        | Heatmap grid across 8 categories with proficiency levels                               |
-| Projects      | 7 projects (CryptoWatch, PIC-1, Intelligent Agent, Wine SVM, IPS v2, AI Chat, MiniLang)|
-| Education     | Degree, English certification, achievements (3rd place Ideathon SP 2025)               |
-| Certifications| 20+ certs filterable by category                                                       |
-| Contact       | Email, LinkedIn, GitHub, WhatsApp                                                      |
+## Links
 
-## Tech Stack
+- [Portfólio publicado](https://michelfviana.github.io/portfolio/)
+- [LinkedIn](https://www.linkedin.com/in/michel-ferreira-429b17225/)
+- [GitHub](https://github.com/michelfviana)
+- [E-mail](mailto:michel.fvc@proton.me)
 
-- HTML5, CSS3, JavaScript (ES6+)
-- Google Fonts: Inter + JetBrains Mono
-- Font Awesome 6
-- CSS custom properties, Grid, Flexbox, Intersection Observer API
-
-## Responsive Breakpoints
-
-- Desktop: 1100px+
-- Tablet: 768px – 1100px
-- Mobile: below 768px
-
-## Running Locally
-
-```bash
-git clone https://github.com/Michelfviana/portfolio.git
-cd portfolio
-# Open index.html directly in any browser
-```
-
-No build step or dependencies to install.
-
-## Contact
-
-**Michel Ferreira** — Software Engineer
-
-- Email: [michel.fvc@proton.me](mailto:michel.fvc@proton.me)
-- LinkedIn: [michel-ferreira-429b17225](https://www.linkedin.com/in/michel-ferreira-429b17225/)
-- GitHub: [@michelfviana](https://github.com/michelfviana)
-- WhatsApp: [+55 19 97103-2254](https://wa.me/5519971032254)
-
----
-
-MIT License
+As alterações locais precisam ser publicadas pelo fluxo de hospedagem do repositório para aparecerem no site online.

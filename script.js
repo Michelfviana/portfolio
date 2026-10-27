@@ -5,6 +5,19 @@
 const navbar = document.getElementById('navbar');
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const navLinksContainer = document.querySelector('.nav-links');
+const isEnglish = document.documentElement.lang === 'en';
+const menuLabels = isEnglish
+    ? { open: 'Open menu', close: 'Close menu' }
+    : { open: 'Abrir menu', close: 'Fechar menu' };
+
+// Both static pages share section IDs; keep the current section on language changes.
+document.querySelectorAll('.language-switch a').forEach(link => {
+    link.addEventListener('click', () => {
+        const destination = new URL(link.href);
+        destination.hash = window.location.hash;
+        link.href = destination.href;
+    });
+});
 
 window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 50);
@@ -12,19 +25,32 @@ window.addEventListener('scroll', () => {
     highlightActiveSection();
 });
 
+function setMenuOpen(open) {
+    navLinksContainer.classList.toggle('active', open);
+    mobileMenuBtn.setAttribute('aria-expanded', String(open));
+    mobileMenuBtn.setAttribute('aria-label', open ? menuLabels.close : menuLabels.open);
+}
+
 mobileMenuBtn.addEventListener('click', () => {
-    navLinksContainer.classList.toggle('active');
+    setMenuOpen(!navLinksContainer.classList.contains('active'));
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navLinksContainer.classList.contains('active')) {
+        setMenuOpen(false);
+        mobileMenuBtn.focus();
+    }
 });
 
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        navLinksContainer.classList.remove('active');
+        setMenuOpen(false);
     });
 });
 
 document.addEventListener('click', (e) => {
     if (!navLinksContainer.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-        navLinksContainer.classList.remove('active');
+        setMenuOpen(false);
     }
 });
 
@@ -116,7 +142,12 @@ function typeTerminal() {
     setTimeout(typeTerminal, typeDelay);
 }
 
-setTimeout(typeTerminal, 1200);
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (reducedMotion) {
+    terminalCmd.textContent = commands[0];
+} else {
+    setTimeout(typeTerminal, 1200);
+}
 
 // ============================================================
 // Scroll Reveal
@@ -134,7 +165,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 function setupReveal(selector, delay = 0) {
     document.querySelectorAll(selector).forEach((el, i) => {
         el.classList.add('reveal');
-        el.style.transitionDelay = `${delay + i * 0.08}s`;
+        el.style.transitionDelay = `${delay + (i % 4) * 0.08}s`;
         revealObserver.observe(el);
     });
 }
@@ -158,6 +189,11 @@ const counterObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             const el = entry.target;
             const target = parseInt(el.dataset.target);
+            if (reducedMotion) {
+                el.textContent = target;
+                counterObserver.unobserve(el);
+                return;
+            }
             let current = 0;
             const steps = 60;
             const increment = target / steps;
@@ -181,13 +217,18 @@ document.querySelectorAll('.stat-value[data-target]').forEach(el => {
 
 const filterBtns = document.querySelectorAll('.cert-filter');
 const certCards = document.querySelectorAll('.cert-card');
+const certCount = document.getElementById('certs-count');
 
 filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         const filter = btn.dataset.filter;
 
-        filterBtns.forEach(b => b.classList.remove('active'));
+        filterBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+        });
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
 
         certCards.forEach(card => {
             if (filter === 'all' || card.dataset.cat === filter) {
@@ -196,6 +237,11 @@ filterBtns.forEach(btn => {
                 card.classList.add('hidden');
             }
         });
+
+        const visibleCount = [...certCards].filter(card => !card.classList.contains('hidden')).length;
+        certCount.textContent = isEnglish
+            ? `${visibleCount} of ${certCards.length} certificates`
+            : `${visibleCount} de ${certCards.length} certificados`;
     });
 });
 

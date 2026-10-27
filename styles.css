@@ -1625,3 +1625,108 @@ footer .footer-logo {
     .skills-heatmap { grid-template-columns: 1fr; }
     .hero-name { font-size: 2.2rem; }
 }
+
+/* Supporting copy for the updated professional profile. */
+.section-intro {
+    max-width: 820px;
+    margin: -12px 0 32px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+.project-more { margin: 32px 0 0; }
+.project-more a { color: var(--cyan); }
+.project-card { display: flex; flex-direction: column; }
+.project-content { display: flex; flex: 1; flex-direction: column; }
+.project-link-row { margin-top: auto; padding-top: 20px; }
+.contact-value { overflow-wrap: anywhere; }
+.skill-group-header { align-items: flex-start; }
+a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 5px;
+}
+@media (max-width: 1100px) {
+    .section-intro { margin-left: auto; margin-right: auto; text-align: center; }
+}
+@media (max-width: 380px) {
+    .projects-grid { grid-template-columns: minmax(0, 1fr); }
+    .hero-title { overflow-wrap: anywhere; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+}
+
+/* Language links stay visible on desktop and mobile. */
+.nav-container { gap: 16px; }
+.nav-container > .logo { order: 1; flex-shrink: 0; }
+.nav-links { order: 2; margin-left: auto; }
+.nav-links a { padding-left: 7px; padding-right: 7px; }
+.language-switch {
+    order: 3;
+    display: flex;
+    flex-shrink: 0;
+    gap: 4px;
+    padding: 3px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+.language-switch a {
+    padding: 5px 8px;
+    border-radius: 4px;
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+.language-switch a:hover,
+.language-switch a[aria-current="page"] {
+    color: var(--cyan);
+    background: var(--cyan-dim);
+}
+.mobile-menu-btn { order: 4; flex-shrink: 0; }
+@media (max-width: 1100px) {
+    .mobile-menu-btn { display: flex; }
+    .language-switch { margin-left: auto; }
+    .nav-links {
+        position: fixed;
+        top: 86px;
+        right: -100%;
+        width: min(75%, 360px);
+        height: calc(100dvh - 86px);
+        overflow-y: auto;
+        background: rgba(8, 11, 16, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 32px 20px;
+        border-left: 1px solid var(--border);
+        transition: right var(--transition);
+        z-index: 999;
+        gap: 8px;
+    }
+    .nav-links.active { right: 0; }
+    .nav-links a { display: block; padding: 10px 16px; font-size: 14px; }
+}
+
+/* Certificate metadata from the supplied LinkedIn list. */
+.cert-issuer-badge { max-width: 100%; white-space: normal; }
+.cert-issuer-badge.ec-council {
+    color: var(--amber);
+    background: var(--amber-dim);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+.certs-count { margin-bottom: 16px; color: var(--text-secondary); font-size: 13px; }
+.cert-credential { margin-top: 12px; font-size: 12px; color: var(--text-secondary); }
+.cert-credential summary { cursor: pointer; color: var(--cyan); }
+.cert-credential summary:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+.cert-credential code {
+    display: block;
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    overflow-wrap: anywhere;
+    user-select: all;
+}
