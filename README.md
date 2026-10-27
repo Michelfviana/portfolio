@@ -15,7 +15,7 @@ O conteúdo foi atualizado com o currículo de 2026 e o perfil público do Linke
 - Destaque de 57+ certificados no perfil.
 - Formação, idiomas, reconhecimentos e catálogo com 58 certificações e cursos: 57 da lista fornecida do LinkedIn e o EHE do currículo, sem duplicações. Inclui datas, códigos de credencial quando informados e filtros por categoria.
 - Busca de certificados por curso, instituição ou tecnologia, combinada com categoria e contador de resultados.
-- Contato por e-mail, LinkedIn, GitHub e WhatsApp.
+- Contato por e-mail, LinkedIn, GitHub e WhatsApp. No desktop Linux, o link abre diretamente o WhatsApp Web; nos demais dispositivos, mantém o link `wa.me`.
 
 ## Idiomas e GitHub Pages
 

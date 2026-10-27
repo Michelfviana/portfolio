@@ -312,3 +312,17 @@ document.querySelectorAll('.project-card').forEach(card => {
         card.style.setProperty('--mouse-y', y + '%');
     });
 });
+
+// Desktop Linux visitors go straight to the web client; other devices keep click-to-chat.
+const isLinuxDesktop = /Linux/i.test(navigator.userAgent) && !/Android/i.test(navigator.userAgent);
+if (isLinuxDesktop) {
+    document.querySelectorAll('[data-whatsapp-phone]').forEach(link => {
+        const destination = new URL('https://web.whatsapp.com/send');
+        destination.searchParams.set('phone', link.dataset.whatsappPhone);
+        link.href = destination.href;
+        link.setAttribute('aria-label', isEnglish
+            ? 'Chat with Michel Ferreira on WhatsApp Web'
+            : 'Conversar com Michel Ferreira no WhatsApp Web');
+        link.querySelector('.contact-label').textContent = 'WhatsApp Web';
+    });
+}
