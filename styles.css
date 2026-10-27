@@ -1806,3 +1806,6 @@ section[id], #main-content { scroll-margin-top: 104px; }
     .catalog-reset { align-self: flex-start; }
     .certs-grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Local résumé files are available in either language from the hero. */
+.resume-downloads { margin-top: 12px; }

@@ -6,6 +6,7 @@ O conteúdo foi atualizado com o currículo de 2026 e o perfil público do Linke
 
 ## Conteúdo
 
+- Download dos currículos em português e inglês (DOCX) na apresentação, disponível também sem JavaScript.
 - Perfil profissional e atuação na Total Express, via Leega Consultoria.
 - Cinco experiências: Total Express / Leega, AgattiTech, Governo de Rondônia, Before e Grupo Energisa.
 - Competências organizadas por contexto, incluindo tecnologias de projetos e laboratórios e tecnologias com familiaridade.
@@ -27,7 +28,7 @@ O seletor funciona sem JavaScript. Com JavaScript, preserva a seção atual na t
 
 Para publicar, envie os arquivos para a branch usada pelo GitHub Pages. Se a publicação usar **Deploy from a branch**, selecione essa branch e a pasta **/ (root)** em **Settings → Pages**. Não é necessário servidor de aplicação nem build. A seleção de idioma usa caminhos relativos compatíveis com o subdiretório `/portfolio/`.
 
-Ao atualizar o conteúdo, mantenha `index.html` e `en.html` sincronizados.
+Ao atualizar o conteúdo, mantenha `index.html` e `en.html` sincronizados. Os currículos ficam em `assets/resumes/`; publique essa pasta junto com as páginas. Os downloads usam caminhos relativos e o atributo HTML `download`, sem depender de serviços externos ou JavaScript.
 
 ## Executar localmente
 
@@ -47,6 +48,7 @@ portfolio/
 ├── en.html      # Versão em inglês
 ├── styles.css   # Estilos, responsividade e redução de movimento
 ├── script.js    # Navegação, animações, contadores e filtros
+├── assets/resumes/ # Currículos PT-BR e EN para download
 ├── image.png    # Captura histórica, anterior à atualização de 2026
 └── README.md
 ```
