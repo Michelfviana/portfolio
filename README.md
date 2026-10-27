@@ -9,9 +9,11 @@ O conteúdo foi atualizado com o currículo de 2026 e o perfil público do Linke
 - Perfil profissional e atuação na Total Express, via Leega Consultoria.
 - Cinco experiências: Total Express / Leega, AgattiTech, Governo de Rondônia, Before e Grupo Energisa.
 - Competências organizadas por contexto, incluindo tecnologias de projetos e laboratórios e tecnologias com familiaridade.
+- Projetos com busca por nome ou tecnologia e filtros por área.
 - Doze projetos: SisExtens, SecureChain Audit, Magic Scanner, CryptoWatch, PIC-1, Agente Inteligente, Processamento de Imagem v2, Agente de Chat Inteligente, MiniLang, Forecasting de NO₂ com LSTM, Wine Quality Analysis e Software Security Sins Lab.
 - Destaque de 57+ certificados no perfil.
 - Formação, idiomas, reconhecimentos e catálogo com 58 certificações e cursos: 57 da lista fornecida do LinkedIn e o EHE do currículo, sem duplicações. Inclui datas, códigos de credencial quando informados e filtros por categoria.
+- Busca de certificados por curso, instituição ou tecnologia, combinada com categoria e contador de resultados.
 - Contato por e-mail, LinkedIn, GitHub e WhatsApp.
 
 ## Idiomas e GitHub Pages
@@ -49,7 +51,7 @@ portfolio/
 └── README.md
 ```
 
-A navegação mobile informa seu estado a leitores de tela e pode ser fechada com Escape. As animações respeitam a preferência por movimento reduzido. Os números do perfil permanecem legíveis mesmo sem JavaScript.
+A navegação mobile informa seu estado a leitores de tela, pode ser fechada com Escape e mantém os links do menu fechado fora da ordem de foco. Um link permite pular direto para o conteúdo. As âncoras preservam a seção na URL e o histórico do navegador. As animações respeitam a preferência por movimento reduzido. Os números do perfil permanecem legíveis mesmo sem JavaScript. A busca ignora acentos e maiúsculas, combina palavras e categorias e oferece uma ação para limpar todos os filtros. As ferramentas de busca aparecem quando o JavaScript está ativo; os 12 projetos e 58 certificados continuam disponíveis no HTML estático.
 
 ## Links
 

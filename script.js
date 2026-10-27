@@ -5,6 +5,7 @@
 const navbar = document.getElementById('navbar');
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const navLinksContainer = document.querySelector('.nav-links');
+const mobileNavigation = window.matchMedia('(max-width: 1100px)');
 const isEnglish = document.documentElement.lang === 'en';
 const menuLabels = isEnglish
     ? { open: 'Open menu', close: 'Close menu' }
@@ -19,17 +20,27 @@ document.querySelectorAll('.language-switch a').forEach(link => {
     });
 });
 
+let scrollScheduled = false;
 window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-    backToTopButton.classList.toggle('visible', window.pageYOffset > 300);
-    highlightActiveSection();
-});
+    if (scrollScheduled) return;
+    scrollScheduled = true;
+    window.requestAnimationFrame(() => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+        backToTopButton.classList.toggle('visible', window.scrollY > 300);
+        highlightActiveSection();
+        scrollScheduled = false;
+    });
+}, { passive: true });
 
 function setMenuOpen(open) {
     navLinksContainer.classList.toggle('active', open);
+    navLinksContainer.inert = mobileNavigation.matches && !open;
     mobileMenuBtn.setAttribute('aria-expanded', String(open));
     mobileMenuBtn.setAttribute('aria-label', open ? menuLabels.close : menuLabels.open);
 }
+
+setMenuOpen(false);
+mobileNavigation.addEventListener('change', () => setMenuOpen(false));
 
 mobileMenuBtn.addEventListener('click', () => {
     setMenuOpen(!navLinksContainer.classList.contains('active'));
@@ -54,19 +65,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offset = 90;
-            const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-            window.scrollTo({ top, behavior: 'smooth' });
-        }
-    });
-});
-
+// Native anchors preserve URL fragments, browser history and language-switch destinations.
 function highlightActiveSection() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -80,8 +79,10 @@ function highlightActiveSection() {
 
     navLinks.forEach(link => {
         link.classList.remove('active');
+        link.removeAttribute('aria-current');
         if (link.getAttribute('href') === '#' + current) {
             link.classList.add('active');
+            link.setAttribute('aria-current', 'location');
         }
     });
 }
@@ -93,7 +94,7 @@ function highlightActiveSection() {
 const backToTopButton = document.getElementById('back-to-top');
 
 backToTopButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: reducedMotion ? 'instant' : 'smooth' });
 });
 
 // ============================================================
@@ -212,38 +213,77 @@ document.querySelectorAll('.stat-value[data-target]').forEach(el => {
 });
 
 // ============================================================
-// Certification filter
+// Search and category filters share the same behavior in both languages.
 // ============================================================
 
-const filterBtns = document.querySelectorAll('.cert-filter');
-const certCards = document.querySelectorAll('.cert-card');
-const certCount = document.getElementById('certs-count');
+function normalizeSearch(value) {
+    return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
 
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const filter = btn.dataset.filter;
+function setupCatalog({ cardsSelector, buttonsSelector, inputId, countId, emptyId, categoryKey, textSelector, names }) {
+    const cards = [...document.querySelectorAll(cardsSelector)];
+    const buttons = [...document.querySelectorAll(buttonsSelector)];
+    const input = document.getElementById(inputId);
+    const search = input.closest('.catalog-search');
+    const reset = search.querySelector('.catalog-reset');
+    const count = document.getElementById(countId);
+    const empty = document.getElementById(emptyId);
+    const entries = cards.map(card => ({
+        card,
+        categories: card.dataset[categoryKey].split(/\s+/),
+        text: normalizeSearch([...card.querySelectorAll(textSelector)].map(el => el.textContent).join(' ')),
+    }));
+    let category = 'all';
 
-        filterBtns.forEach(b => {
-            b.classList.remove('active');
-            b.setAttribute('aria-pressed', 'false');
+    function update() {
+        const terms = normalizeSearch(input.value.trim()).split(/\s+/).filter(Boolean);
+        let visible = 0;
+        entries.forEach(entry => {
+            const matchesCategory = category === 'all' || entry.categories.includes(category);
+            const matchesSearch = terms.every(term => entry.text.includes(term));
+            entry.card.hidden = !(matchesCategory && matchesSearch);
+            if (!entry.card.hidden) visible++;
         });
-        btn.classList.add('active');
-        btn.setAttribute('aria-pressed', 'true');
-
-        certCards.forEach(card => {
-            if (filter === 'all' || card.dataset.cat === filter) {
-                card.classList.remove('hidden');
-            } else {
-                card.classList.add('hidden');
-            }
+        buttons.forEach(button => {
+            const active = button.dataset.filter === category;
+            button.classList.toggle('active', active);
+            button.setAttribute('aria-pressed', String(active));
         });
+        count.textContent = isEnglish
+            ? `${visible} of ${cards.length} ${names.en}`
+            : `${visible} de ${cards.length} ${names.pt}`;
+        empty.hidden = visible !== 0;
+    }
 
-        const visibleCount = [...certCards].filter(card => !card.classList.contains('hidden')).length;
-        certCount.textContent = isEnglish
-            ? `${visibleCount} of ${certCards.length} certificates`
-            : `${visibleCount} de ${certCards.length} certificados`;
+    buttons.forEach(button => button.addEventListener('click', () => {
+        category = button.dataset.filter;
+        update();
+    }));
+    input.addEventListener('input', update);
+    reset.addEventListener('click', () => {
+        input.value = '';
+        category = 'all';
+        update();
+        input.focus();
     });
+    search.hidden = false;
+    buttons[0].parentElement.hidden = false;
+    update();
+}
+
+setupCatalog({
+    cardsSelector: '.project-card', buttonsSelector: '.project-filter',
+    inputId: 'project-search', countId: 'projects-count', emptyId: 'projects-empty',
+    categoryKey: 'category', textSelector: 'h3, .project-description, .tech-tag',
+    names: { en: 'projects', pt: 'projetos' },
 });
+setupCatalog({
+    cardsSelector: '.cert-card', buttonsSelector: '.cert-filter',
+    inputId: 'cert-search', countId: 'certs-count', emptyId: 'certs-empty',
+    categoryKey: 'cat', textSelector: '.cert-name, .cert-issuer-badge',
+    names: { en: 'certificates', pt: 'certificados' },
+});
+highlightActiveSection();
 
 // ============================================================
 // Ticker pause on hover

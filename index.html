@@ -29,9 +29,10 @@
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
     <!-- Scrolling Ticker Bar -->
-    <div class="ticker-bar">
+    <div class="ticker-bar" aria-hidden="true">
         <div class="ticker-live">
             <span class="live-dot"></span>STACK
         </div>
@@ -109,7 +110,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav id="navbar">
+    <nav id="navbar" aria-label="Navegação principal">
         <div class="nav-container">
             <div class="logo">
                 <span class="logo-bracket">[</span>MF<span class="logo-bracket">]</span>
@@ -142,12 +143,13 @@
         </div>
     </nav>
 
+    <main id="main-content" tabindex="-1">
     <!-- Hero -->
     <section class="hero" id="home">
         <div class="grid-overlay">
 </div>
         <div class="hero-content">
-            <div class="terminal-header">
+            <div class="terminal-header" aria-hidden="true">
                 <span class="terminal-prompt">$ </span>
                 <span class="terminal-cmd" id="terminal-cmd"></span>
                 <span class="terminal-cursor">▋</span>
@@ -424,8 +426,19 @@
 <div class="section-label">ENGENHARIA APLICADA</div>
 <h2 class="section-title">Projetos em destaque</h2>
 <p class="section-intro">Aplicações, integrações e laboratórios que demonstram minha atuação em software, segurança, IA e fundamentos de computação.</p>
+<div class="catalog-search" hidden>
+<label for="project-search">Encontre um projeto</label>
+<div class="catalog-search-row"><input id="project-search" type="search" placeholder="Busque por nome ou tecnologia" autocomplete="off" spellcheck="false"><button type="button" class="catalog-reset">Limpar filtros</button></div>
+</div>
+<div class="project-filter-btns" role="group" aria-label="Categorias de projetos" hidden><button type="button" class="project-filter active" data-filter="all" aria-pressed="true">Todos</button>
+<button type="button" class="project-filter" data-filter="web" aria-pressed="false">Web / Full Stack</button>
+<button type="button" class="project-filter" data-filter="ai" aria-pressed="false">IA e dados</button>
+<button type="button" class="project-filter" data-filter="security" aria-pressed="false">Segurança</button>
+<button type="button" class="project-filter" data-filter="languages" aria-pressed="false">Linguagens</button></div>
+<p class="catalog-count" id="projects-count" role="status">12 de 12 projetos</p>
+<p class="catalog-empty" id="projects-empty" hidden>Nenhum projeto encontrado. Tente outro termo ou limpe os filtros.</p>
 <div class="projects-grid">
-<a href="https://github.com/Michelfviana/sisextens" class="project-card" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Michelfviana/sisextens" class="project-card" data-category="web" target="_blank" rel="noopener noreferrer">
 <div class="project-header">
 <div class="project-title-row">
 <h3>SisExtens</h3>
@@ -439,7 +452,7 @@
 <div class="project-link-row"><span class="view-project">Ver repositório <i class="fas fa-arrow-right"></i></span>
 </div>
 </div></a>
-<a href="https://github.com/Michelfviana/secure-chain-audit" class="project-card" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Michelfviana/secure-chain-audit" class="project-card" data-category="security" target="_blank" rel="noopener noreferrer">
 <div class="project-header">
 <div class="project-title-row">
 <h3>SecureChain Audit</h3>
@@ -453,7 +466,7 @@
 <div class="project-link-row"><span class="view-project">Ver repositório <i class="fas fa-arrow-right"></i></span>
 </div>
 </div></a>
-<a href="https://github.com/Michelfviana/magic-scanner" class="project-card" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Michelfviana/magic-scanner" class="project-card" data-category="web ai" target="_blank" rel="noopener noreferrer">
 <div class="project-header">
 <div class="project-title-row">
 <h3>Magic Scanner</h3>
@@ -467,7 +480,7 @@
 <div class="project-link-row"><span class="view-project">Ver repositório <i class="fas fa-arrow-right"></i></span>
 </div>
 </div></a>
-<a href="https://github.com/Michelfviana/crypto-watch" class="project-card" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Michelfviana/crypto-watch" class="project-card" data-category="web" target="_blank" rel="noopener noreferrer">
 <div class="project-header">
 <div class="project-title-row">
 <h3>CryptoWatch</h3>
@@ -481,7 +494,7 @@
 <div class="project-link-row"><span class="view-project">Ver repositório <i class="fas fa-arrow-right"></i></span>
 </div>
 </div></a>
-<a href="https://github.com/MoreiraLabs/PIC-1" class="project-card" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/MoreiraLabs/PIC-1" class="project-card" data-category="web" target="_blank" rel="noopener noreferrer">
 <div class="project-header">
 <div class="project-title-row">
 <h3>PIC-1 — Checklist de Veículos</h3>
@@ -495,7 +508,7 @@
 <div class="project-link-row"><span class="view-project">Ver repositório <i class="fas fa-arrow-right"></i></span>
 </div>
 </div></a>
-<a href="https://github.com/Michelfviana/intelligent-agent-project" class="project-card" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Michelfviana/intelligent-agent-project" class="project-card" data-category="ai" target="_blank" rel="noopener noreferrer">
 <div class="project-header">
 <div class="project-title-row">
 <h3>Agente Inteligente</h3>
@@ -509,7 +522,7 @@
 <div class="project-link-row"><span class="view-project">Ver repositório <i class="fas fa-arrow-right"></i></span>
 </div>
 </div></a>
-<a href="https://github.com/Michelfviana/IPS-2" class="project-card" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Michelfviana/IPS-2" class="project-card" data-category="ai" target="_blank" rel="noopener noreferrer">
 <div class="project-header">
 <div class="project-title-row">
 <h3>Processamento de Imagem v2</h3>
@@ -523,7 +536,7 @@
 <div class="project-link-row"><span class="view-project">Ver repositório <i class="fas fa-arrow-right"></i></span>
 </div>
 </div></a>
-<a href="https://github.com/Michelfviana/ai-chatbot" class="project-card" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Michelfviana/ai-chatbot" class="project-card" data-category="ai" target="_blank" rel="noopener noreferrer">
 <div class="project-header">
 <div class="project-title-row">
 <h3>Agente de Chat Inteligente</h3>
@@ -537,7 +550,7 @@
 <div class="project-link-row"><span class="view-project">Ver repositório <i class="fas fa-arrow-right"></i></span>
 </div>
 </div></a>
-<a href="https://github.com/Michelfviana/Mini-language" class="project-card" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Michelfviana/Mini-language" class="project-card" data-category="languages" target="_blank" rel="noopener noreferrer">
 <div class="project-header">
 <div class="project-title-row">
 <h3>MiniLang</h3>
@@ -551,7 +564,7 @@
 <div class="project-link-row"><span class="view-project">Ver repositório <i class="fas fa-arrow-right"></i></span>
 </div>
 </div></a>
-<a href="https://github.com/Michelfviana/forecasting-RNNs" class="project-card" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Michelfviana/forecasting-RNNs" class="project-card" data-category="ai" target="_blank" rel="noopener noreferrer">
 <div class="project-header">
 <div class="project-title-row">
 <h3>Forecasting de NO₂ com LSTM</h3>
@@ -565,7 +578,7 @@
 <div class="project-link-row"><span class="view-project">Ver repositório <i class="fas fa-arrow-right"></i></span>
 </div>
 </div></a>
-<a href="https://github.com/Michelfviana/wine-analysis" class="project-card" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Michelfviana/wine-analysis" class="project-card" data-category="ai" target="_blank" rel="noopener noreferrer">
 <div class="project-header">
 <div class="project-title-row">
 <h3>Wine Quality Analysis</h3>
@@ -579,7 +592,7 @@
 <div class="project-link-row"><span class="view-project">Ver repositório <i class="fas fa-arrow-right"></i></span>
 </div>
 </div></a>
-<a href="https://github.com/Michelfviana/security-lab" class="project-card" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Michelfviana/security-lab" class="project-card" data-category="security" target="_blank" rel="noopener noreferrer">
 <div class="project-header">
 <div class="project-title-row">
 <h3>Software Security Sins Lab</h3>
@@ -648,7 +661,7 @@
 </div>
 <div class="certs-header">
                     <div class="col-header"><i class="fas fa-certificate"></i> Certificações</div>
-                    <div class="cert-filter-btns">
+                    <div class="cert-filter-btns" role="group" aria-label="Categorias de certificados" hidden>
                         <button class="cert-filter active" aria-pressed="true" data-filter="all">Todas</button>
                         <button class="cert-filter" aria-pressed="false" data-filter="security">Segurança</button>
                         <button class="cert-filter" aria-pressed="false" data-filter="cloud">Cloud e infra</button>
@@ -659,8 +672,13 @@
                     </div>
                 </div>
 
-                <p class="certs-count" id="certs-count" role="status">58 de 58 certificados</p>
-                <div class="certs-grid" id="certs-grid">
+                <div class="catalog-search" hidden>
+<label for="cert-search">Encontre um certificado</label>
+<div class="catalog-search-row"><input id="cert-search" type="search" placeholder="Busque por curso, instituição ou tecnologia" autocomplete="off" spellcheck="false"><button type="button" class="catalog-reset">Limpar filtros</button></div>
+</div>
+<p class="certs-count" id="certs-count" role="status">58 de 58 certificados</p>
+                <p class="catalog-empty" id="certs-empty" hidden>Nenhum certificado encontrado. Tente outro termo ou limpe os filtros.</p>
+<div class="certs-grid" id="certs-grid">
                     <div class="cert-card" data-cat="security">
                         <div class="cert-issuer-badge fiap">FIAP</div>
                         <div class="cert-name" lang="en">Blockchain</div>
@@ -1207,6 +1225,7 @@
         </div>
     </section>
 
+    </main>
     <!-- Footer -->
     <footer>
         <div class="footer-container">
