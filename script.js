@@ -11,14 +11,36 @@ const menuLabels = isEnglish
     ? { open: 'Open menu', close: 'Close menu' }
     : { open: 'Abrir menu', close: 'Fechar menu' };
 
-// Both static pages share section IDs; keep the current section on language changes.
+// Keep the reader at the same scroll position when switching language.
+const languageScrollKey = 'portfolio-language-scroll';
+
 document.querySelectorAll('.language-switch a').forEach(link => {
     link.addEventListener('click', () => {
         const destination = new URL(link.href);
-        destination.hash = window.location.hash;
+        destination.hash = '';
+        try {
+            sessionStorage.setItem(languageScrollKey, JSON.stringify({
+                path: destination.pathname,
+                y: window.scrollY,
+            }));
+        } catch (_) {
+            // Language switching still works if session storage is unavailable.
+        }
         link.href = destination.href;
     });
 });
+
+try {
+    const savedPosition = JSON.parse(sessionStorage.getItem(languageScrollKey) || 'null');
+    if (savedPosition?.path === window.location.pathname) {
+        sessionStorage.removeItem(languageScrollKey);
+        window.addEventListener('load', () => {
+            requestAnimationFrame(() => window.scrollTo(0, savedPosition.y));
+        }, { once: true });
+    }
+} catch (_) {
+    // Ignore unavailable or invalid session storage data.
+}
 
 let scrollScheduled = false;
 window.addEventListener('scroll', () => {
