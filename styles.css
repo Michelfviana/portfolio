@@ -1925,7 +1925,8 @@ footer .footer-logo {
 }
 
 .project-more {
-    margin: 32px 0 0;
+    margin: 32px auto 0;
+    text-align: center;
 }
 
 .project-more a {
@@ -2383,4 +2384,89 @@ section[id],
     .certifications-link-icon { width: 32px; height: 32px; font-size: 16px; }
     .certifications-link-copy > span { font-size: 13px; }
     .certifications-link-arrow { font-size: 12px; }
+}
+
+.github-explore {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 720px;
+    min-height: 84px;
+    margin: 18px auto 0;
+    padding: 20px 24px;
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(115deg, var(--cyan-dim), var(--bg-card) 85%);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+.github-explore-icon { flex-shrink: 0; color: var(--cyan); font-size: 30px; line-height: 1; }
+.github-explore-copy { min-width: 0; overflow-wrap: anywhere; }
+.github-explore-copy strong { display: block; font-size: 15px; font-weight: 600; }
+.github-explore-copy small { display: block; margin-top: 4px; font-size: 12px; line-height: 1.6; color: var(--text-secondary); }
+.github-explore-arrow { flex-shrink: 0; margin-left: auto; color: var(--cyan); font-size: 15px; }
+.github-explore:hover, .github-explore:focus-visible { border-color: var(--cyan); box-shadow: 0 0 24px var(--cyan-dim); }
+.github-explore:focus-visible { outline: 2px solid var(--cyan); outline-offset: 5px; }
+@media (max-width: 480px) {
+    .github-explore { padding: 18px 16px; gap: 12px; }
+    .github-explore-icon { font-size: 26px; }
+    .github-explore-copy strong { font-size: 14px; }
+    .github-explore-copy small { font-size: 11px; }
+    .github-explore-arrow { font-size: 13px; }
+}
+
+/* Certificate cards share the projects' area-based visual identity. */
+.certs-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 18px; }
+.cert-card {
+    display: flex;
+    flex-direction: column;
+    padding: 18px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+.cert-identity {
+    --cert-color: var(--green);
+    --cert-tint: var(--green-dim);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 68px;
+    margin: -18px -18px 20px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    background: linear-gradient(115deg, var(--cert-tint), transparent);
+    color: var(--cert-color);
+}
+.cert-area-security, .cert-area-cloud { --cert-color: var(--cyan); --cert-tint: var(--cyan-dim); }
+.cert-area-data { --cert-color: var(--purple); --cert-tint: var(--purple-dim); }
+.cert-area-tools { --cert-color: var(--amber); --cert-tint: var(--amber-dim); }
+.cert-emblem {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border: 1px solid currentColor;
+    border-radius: 9px;
+    background: var(--bg-card);
+    font-size: 13px;
+}
+.cert-area-label { min-width: 0; font: 9px/1.5 var(--font-mono); letter-spacing: .06em; overflow-wrap: anywhere; }
+.cert-number { margin-left: auto; font: 9px var(--font-mono); opacity: .7; }
+.cert-card .cert-issuer-badge { align-self: flex-start; margin-bottom: 12px; }
+.cert-card .cert-name { flex: 1; font-size: 14px; line-height: 1.6; margin-bottom: 16px; overflow-wrap: anywhere; }
+.cert-card .cert-date { line-height: 1.7; }
+.cert-card .cert-credential { width: 100%; margin-top: 12px; border-top: 1px solid var(--border); padding-top: 6px; }
+.cert-card .cert-credential summary { min-height: 40px; display: flex; align-items: center; justify-content: space-between; gap: 12px; list-style: none; font-size: 11px; }
+.cert-card .cert-credential summary::-webkit-details-marker { display: none; }
+.cert-card .cert-credential summary::after { content: '+'; color: var(--cyan); font: 18px var(--font-mono); }
+.cert-card .cert-credential[open] summary::after { content: '−'; }
+.cert-card .cert-credential code { margin-top: 0; padding: 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-primary); font-size: 11px; line-height: 1.7; }
+.cert-card:hover { border-color: var(--cyan); box-shadow: 0 12px 28px rgba(0, 0, 0, .25); }
+.cert-card:focus-within { border-color: var(--cyan); }
+@media (max-width: 480px) {
+    .certs-grid { grid-template-columns: minmax(0, 1fr); }
 }

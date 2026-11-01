@@ -182,7 +182,7 @@
     resize(); syncMotion();
 
     // Glass spotlights, card tilt, hero parallax and magnetic buttons.
-    const surfaces = [...document.querySelectorAll('.project-card,.pillar-card,.skill-group,.contact-card,.code-window,.edu-card,.achievement-card')];
+    const surfaces = [...document.querySelectorAll('.project-card,.cert-card,.pillar-card,.skill-group,.contact-card,.code-window,.edu-card,.achievement-card')];
     surfaces.forEach(surface => surface.classList.add('motion-surface'));
     const buttons = [...document.querySelectorAll('.cta-btn')];
     function resetSurface(surface) {

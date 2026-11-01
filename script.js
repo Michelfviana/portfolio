@@ -252,7 +252,7 @@ function normalizeSearch(value) {
     return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 }
 
-function setupCatalog({ cardsSelector, buttonsSelector, inputId, countId, emptyId, categoryKey, textSelector, names }) {
+function setupCatalog({ cardsSelector, buttonsSelector, inputId, countId, emptyId, categoryKey, textSelector, names, onCategoryChange }) {
     const cards = [...document.querySelectorAll(cardsSelector)];
     const buttons = [...document.querySelectorAll(buttonsSelector)];
     const input = document.getElementById(inputId);
@@ -274,6 +274,7 @@ function setupCatalog({ cardsSelector, buttonsSelector, inputId, countId, emptyI
             const matchesCategory = category === 'all' || entry.categories.includes(category);
             const matchesSearch = terms.every(term => entry.text.includes(term));
             entry.card.hidden = !(matchesCategory && matchesSearch);
+            onCategoryChange?.(entry, category);
             if (!entry.card.hidden) visible++;
         });
         buttons.forEach(button => {
@@ -303,16 +304,38 @@ function setupCatalog({ cardsSelector, buttonsSelector, inputId, countId, emptyI
     update();
 }
 
+// Multi-area projects show the selected area, or all their areas in the full catalogue.
+function updateProjectIdentity({ card, categories }, category) {
+    if (categories.length < 2) return;
+    const identity = card.querySelector('.project-identity');
+    const label = identity?.querySelector('.project-category-label');
+    if (!label) return;
+    const areas = {
+        web: { label: 'WEB & FULL STACK', icon: 'fa-code' },
+        ai: { label: isEnglish ? 'AI & DATA' : 'IA & DADOS', icon: 'fa-diagram-project' },
+        security: { label: isEnglish ? 'SECURITY' : 'SEGURANÇA', icon: 'fa-shield-halved' },
+        languages: { label: isEnglish ? 'LANGUAGES' : 'LINGUAGENS', icon: 'fa-terminal' },
+    };
+    const active = categories.includes(category) ? category : categories[0];
+    identity.classList.remove(...Object.keys(areas).map(area => 'identity-' + area));
+    identity.classList.add('identity-' + active);
+    label.textContent = category === 'all'
+        ? categories.map(area => areas[area].label).join(' · ')
+        : areas[active].label;
+    identity.querySelector('.project-emblem i').className = 'fas ' + areas[active].icon;
+}
+
 setupCatalog({
     cardsSelector: '.project-card', buttonsSelector: '.project-filter',
     inputId: 'project-search', countId: 'projects-count', emptyId: 'projects-empty',
     categoryKey: 'category', textSelector: 'h3, .project-description, .tech-tag',
     names: { en: 'projects', pt: 'projetos' },
+    onCategoryChange: updateProjectIdentity,
 });
 setupCatalog({
     cardsSelector: '.cert-card', buttonsSelector: '.cert-filter',
     inputId: 'cert-search', countId: 'certs-count', emptyId: 'certs-empty',
-    categoryKey: 'cat', textSelector: '.cert-name, .cert-issuer-badge',
+    categoryKey: 'cat', textSelector: '.cert-name, .cert-issuer-badge, .cert-area-label',
     names: { en: 'certificates', pt: 'certificados' },
 });
 highlightActiveSection();
