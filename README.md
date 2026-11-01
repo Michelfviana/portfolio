@@ -23,8 +23,8 @@ Efeitos adaptados da referência [TopDarkFlames.github.io](https://github.com/To
 - Projetos com identificação visual por área, numeração, busca por nome ou tecnologia e filtros combináveis.
 - Doze projetos: SisExtens, SecureChain Audit, Magic Scanner, CryptoWatch, PIC-1, Agente Inteligente, Processamento de Imagem v2, Agente de Chat Inteligente, MiniLang, Forecasting de NO₂ com LSTM, Wine Quality Analysis e Software Security Sins Lab.
 - Destaque de 57+ certificados no perfil.
-- Formação, idiomas, reconhecimentos e catálogo com 58 certificações e cursos: 57 da lista fornecida do LinkedIn e o EHE do currículo, sem duplicações. Inclui datas, códigos de credencial quando informados e filtros por categoria.
-- Catálogo de 58 certificados com cabeçalhos por área, ícones, numeração e credenciais expansíveis, em uma área nativa acessível por teclado e sem JavaScript. Busca por curso, instituição ou tecnologia, combinada com categoria e contador de resultados.
+- Formação, idiomas, reconhecimentos e catálogo com 58 certificações e cursos: 57 da lista fornecida do LinkedIn e o EHE do currículo, sem duplicações. Inclui datas e filtros por categoria.
+- Catálogo de 58 certificados com cabeçalhos por área, ícones e numeração, em uma área nativa acessível por teclado e sem JavaScript. Os links fornecidos estão associados a 54 cartões com a ação “Ver certificado”, sem exibir códigos de credencial. Os outros quatro aguardam seus links (três certificados Cambridge e EHE). Busca por curso, instituição ou tecnologia, combinada com categoria e contador de resultados.
 - Contato por e-mail, LinkedIn, GitHub e WhatsApp. No desktop Linux, o link abre diretamente o WhatsApp Web; nos demais dispositivos, mantém o link `wa.me`.
 
 ## Idiomas e GitHub Pages
