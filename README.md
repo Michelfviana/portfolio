@@ -4,6 +4,16 @@ Portfólio de Engenharia de Software Full Stack, em português e inglês, constr
 
 O conteúdo foi atualizado com o currículo de 2026 e o perfil público do LinkedIn: sistemas de negócio, integrações, automação, cloud, observabilidade e engenharia aumentada por IA.
 
+## Animações
+
+Efeitos adaptados da referência [TopDarkFlames.github.io](https://github.com/TopDarkFlames/TopDarkFlames.github.io), preservando a paleta original definida em `styles.css`: verde `#00d084`, ciano `#22d3ee` e fundo escuro. `animations.css` e `animations.js` são compartilhados pelas versões PT/EN.
+
+- Abertura com feixe que revela o nome e transição em direção ao logotipo, uma vez por sessão; clique, rolagem ou tecla permitem pular.
+- Feixes luminosos e partículas com reação à rolagem e ao cursor. O canvas ocupa somente a tela, limita a atualização a 30 fps e pausa quando a aba está oculta.
+- Brilho de vidro, inclinação de cartões, paralaxe na apresentação e botões magnéticos em dispositivos com mouse.
+- Bloco de assinatura que se expande durante a rolagem. Sem JavaScript ou em telas com até 600 px de altura (como celulares em paisagem), aparece como conteúdo estático para manter todo o texto acessível.
+- `prefers-reduced-motion` desativa os novos movimentos, inclusive quando a preferência muda com a página aberta.
+
 ## Conteúdo
 
 - Download dos currículos em português e inglês (DOCX) na apresentação, disponível também sem JavaScript.
@@ -25,6 +35,10 @@ As duas versões são páginas HTML estáticas, com um seletor **PT / EN** sempr
 - Inglês: `en.html` → `https://michelfviana.github.io/portfolio/en.html`
 
 O seletor funciona sem JavaScript. Com JavaScript, preserva a seção atual na troca de idioma. As duas páginas compartilham `styles.css` e `script.js` e possuem metadados de idioma, URLs canônicas e links `hreflang`. Os nomes oficiais de cursos e certificados permanecem no idioma original.
+
+No primeiro acesso com JavaScript, `language.js` detecta o idioma principal do navegador antes de renderizar a página: `pt`, incluindo `pt-BR` e `pt-PT`, abre português; os demais idiomas abrem inglês. A escolha fica salva no navegador. Ao clicar em **PT / EN**, a preferência é atualizada e passa a valer também nas próximas visitas, mesmo que o idioma do navegador seja diferente.
+
+O redirecionamento preserva parâmetros e âncoras e usa caminhos relativos compatíveis com `/portfolio/`. Se o armazenamento persistente estiver bloqueado, a escolha usa a sessão; se ambos estiverem bloqueados, o seletor acrescenta `?lang=pt` ou `?lang=en` para evitar redirecionamento de volta. Esses parâmetros também permitem compartilhar um link com idioma explícito. Sem JavaScript, cada URL continua abrindo seu idioma e o seletor funciona normalmente.
 
 Para publicar, envie os arquivos para a branch usada pelo GitHub Pages. Se a publicação usar **Deploy from a branch**, selecione essa branch e a pasta **/ (root)** em **Settings → Pages**. Não é necessário servidor de aplicação nem build. A seleção de idioma usa caminhos relativos compatíveis com o subdiretório `/portfolio/`.
 
@@ -48,6 +62,8 @@ portfolio/
 ├── en.html      # Versão em inglês
 ├── styles.css   # Estilos, responsividade e redução de movimento
 ├── script.js    # Navegação, animações, contadores e filtros
+├── animations.css # Efeitos visuais com as cores originais
+├── animations.js  # Abertura, feixes, interações e expansão por rolagem
 ├── assets/resumes/ # Currículos PT-BR e EN para download
 ├── image.png    # Captura histórica, anterior à atualização de 2026
 └── README.md

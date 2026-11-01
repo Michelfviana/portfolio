@@ -330,6 +330,7 @@ nav.scrolled {
 
 .hero-visual {
     flex: 1;
+    min-width: 0;
     max-width: 440px;
     margin-left: 60px;
     position: relative;
@@ -498,6 +499,8 @@ nav.scrolled {
 
 /* Code Window */
 .code-window {
+    width: 100%;
+    min-width: 0;
     background: #0d1624;
     border: 1px solid #243044;
     border-radius: var(--radius-lg);
@@ -547,6 +550,9 @@ nav.scrolled {
     font-family: var(--font-mono);
     font-size: 13px;
     line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    text-align: left;
 }
 
 .c-bracket {
@@ -1757,7 +1763,9 @@ footer .footer-logo {
 
     .hero-visual {
         margin: 48px auto 0;
-        max-width: 100%;
+        width: 100%;
+        max-width: 560px;
+        flex: none;
     }
 
     .cta-buttons {
@@ -1887,6 +1895,10 @@ footer .footer-logo {
 }
 
 @media (max-width: 480px) {
+    .code-body {
+        padding: 16px;
+    }
+
     .stats-row {
         grid-template-columns: repeat(2, 1fr);
     }
