@@ -11,17 +11,21 @@ const menuLabels = isEnglish
     ? { open: 'Open menu', close: 'Close menu' }
     : { open: 'Abrir menu', close: 'Fechar menu' };
 
-// Keep the reader at the same scroll position when switching language.
+// Preserve the section and relative reading position across translated layouts.
 const languageScrollKey = 'portfolio-language-scroll';
 
 document.querySelectorAll('.language-switch a').forEach(link => {
     link.addEventListener('click', () => {
         const destination = new URL(link.href);
-        destination.hash = '';
+        const sections = [...document.querySelectorAll('main section[id]')];
+        const section = sections.filter(item => item.offsetTop <= window.scrollY + 110).at(-1) || sections[0];
+        destination.hash = section?.id || '';
         try {
             sessionStorage.setItem(languageScrollKey, JSON.stringify({
                 path: destination.pathname,
                 y: window.scrollY,
+                section: section?.id,
+                progress: section ? Math.max(0, Math.min(1, (window.scrollY - section.offsetTop) / section.offsetHeight)) : 0,
             }));
         } catch (_) {
             // Language switching still works if session storage is unavailable.
@@ -35,7 +39,13 @@ try {
     if (savedPosition?.path === window.location.pathname) {
         sessionStorage.removeItem(languageScrollKey);
         window.addEventListener('load', () => {
-            requestAnimationFrame(() => window.scrollTo(0, savedPosition.y));
+            requestAnimationFrame(() => {
+                const section = document.getElementById(savedPosition.section);
+                const y = section && Number.isFinite(savedPosition.progress)
+                    ? section.offsetTop + section.offsetHeight * savedPosition.progress
+                    : savedPosition.y;
+                window.scrollTo({ top: y, behavior: 'instant' });
+            });
         }, { once: true });
     }
 } catch (_) {

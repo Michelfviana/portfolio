@@ -20,11 +20,11 @@ Efeitos adaptados da referência [TopDarkFlames.github.io](https://github.com/To
 - Perfil profissional e atuação na Total Express, via Leega Consultoria.
 - Cinco experiências: Total Express / Leega, AgattiTech, Governo de Rondônia, Before e Grupo Energisa.
 - Competências organizadas por contexto, incluindo tecnologias de projetos e laboratórios e tecnologias com familiaridade.
-- Projetos com busca por nome ou tecnologia e filtros por área.
+- Projetos com identificação visual por área, numeração, busca por nome ou tecnologia e filtros combináveis.
 - Doze projetos: SisExtens, SecureChain Audit, Magic Scanner, CryptoWatch, PIC-1, Agente Inteligente, Processamento de Imagem v2, Agente de Chat Inteligente, MiniLang, Forecasting de NO₂ com LSTM, Wine Quality Analysis e Software Security Sins Lab.
 - Destaque de 57+ certificados no perfil.
 - Formação, idiomas, reconhecimentos e catálogo com 58 certificações e cursos: 57 da lista fornecida do LinkedIn e o EHE do currículo, sem duplicações. Inclui datas, códigos de credencial quando informados e filtros por categoria.
-- Busca de certificados por curso, instituição ou tecnologia, combinada com categoria e contador de resultados.
+- Catálogo de 58 certificados em uma área expansível nativa, acessível por teclado e sem JavaScript. Busca por curso, instituição ou tecnologia, combinada com categoria e contador de resultados.
 - Contato por e-mail, LinkedIn, GitHub e WhatsApp. No desktop Linux, o link abre diretamente o WhatsApp Web; nos demais dispositivos, mantém o link `wa.me`.
 
 ## Idiomas e GitHub Pages
@@ -34,7 +34,7 @@ As duas versões são páginas HTML estáticas, com um seletor **PT / EN** sempr
 - Português: `index.html` → `https://michelfviana.github.io/portfolio/`
 - Inglês: `en.html` → `https://michelfviana.github.io/portfolio/en.html`
 
-O seletor funciona sem JavaScript. Com JavaScript, preserva a seção atual na troca de idioma. As duas páginas compartilham `styles.css` e `script.js` e possuem metadados de idioma, URLs canônicas e links `hreflang`. Os nomes oficiais de cursos e certificados permanecem no idioma original.
+O seletor funciona sem JavaScript. Com JavaScript, preserva a seção e a posição relativa de leitura na troca de idioma, mesmo quando os textos traduzidos têm alturas diferentes. As duas páginas compartilham `styles.css` e `script.js` e possuem metadados de idioma, URLs canônicas e links `hreflang`. Os nomes oficiais de cursos e certificados permanecem no idioma original.
 
 No primeiro acesso com JavaScript, `language.js` detecta o idioma principal do navegador antes de renderizar a página: `pt`, incluindo `pt-BR` e `pt-PT`, abre português; os demais idiomas abrem inglês. A escolha fica salva no navegador. Ao clicar em **PT / EN**, a preferência é atualizada e passa a valer também nas próximas visitas, mesmo que o idioma do navegador seja diferente.
 
@@ -62,6 +62,7 @@ portfolio/
 ├── en.html      # Versão em inglês
 ├── styles.css   # Estilos, responsividade e redução de movimento
 ├── script.js    # Navegação, animações, contadores e filtros
+├── language.js  # Idioma automático e preferência do visitante
 ├── animations.css # Efeitos visuais com as cores originais
 ├── animations.js  # Abertura, feixes, interações e expansão por rolagem
 ├── assets/resumes/ # Currículos PT-BR e EN para download

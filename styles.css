@@ -2282,3 +2282,105 @@ section[id],
 .resume-downloads {
     margin-top: 12px;
 }
+
+/* Project identities make the catalogue easier to scan without replacing its content. */
+.project-identity {
+    --identity-color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    color: var(--identity-color);
+    background: linear-gradient(110deg, var(--green-dim), transparent 85%);
+    font: 10px var(--font-mono);
+    letter-spacing: .08em;
+}
+.identity-security { --identity-color: var(--cyan); background: linear-gradient(110deg, var(--cyan-dim), transparent 85%); }
+.identity-ai { --identity-color: var(--purple); background: linear-gradient(110deg, var(--purple-dim), transparent 85%); }
+.identity-languages { --identity-color: var(--amber); background: linear-gradient(110deg, var(--amber-dim), transparent 85%); }
+.project-emblem {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border: 1px solid currentColor;
+    border-radius: 10px;
+    font-size: 15px;
+    background: var(--bg-card);
+}
+.project-number { margin-left: auto; opacity: .7; }
+.project-card:focus-visible { outline: 2px solid var(--cyan); outline-offset: 5px; }
+.certificate-catalog {
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    padding: 0 24px;
+}
+.certificate-catalog > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 0;
+    cursor: pointer;
+    list-style: none;
+}
+.certificate-catalog > summary::-webkit-details-marker { display: none; }
+.certificate-catalog > summary strong { display: block; font-size: 16px; font-weight: 500; }
+.certificate-catalog > summary small { display: block; margin-top: 5px; color: var(--text-secondary); font-size: 12px; }
+.certificate-catalog > summary:focus-visible { outline: 2px solid var(--cyan); outline-offset: 5px; border-radius: 4px; }
+.catalog-disclosure-icon { flex-shrink: 0; font: 24px var(--font-mono); color: var(--cyan); transition: transform .25s; }
+.certificate-catalog[open] > summary .catalog-disclosure-icon { transform: rotate(45deg); }
+.certificate-catalog[open] > summary { border-bottom: 1px solid var(--border); }
+.certificate-catalog .certs-section { padding-bottom: 24px; }
+@media (max-width: 768px) {
+    /* A readable 16 px input avoids Safari's focus zoom on phones. */
+    .catalog-search input { font-size: 16px; }
+    .project-identity { padding: 16px 20px; }
+    .certificate-catalog { padding-inline: 16px; }
+    .certificate-catalog > summary strong { font-size: 15px; }
+}
+
+/* A distinct, accessible destination for the external certificate catalogue. */
+.certs-more { margin: 0 0 24px; text-align: left; }
+.certifications-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    min-width: 0;
+    min-height: 76px;
+    padding: 16px 18px;
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius);
+    background: linear-gradient(110deg, var(--green-dim), var(--bg-secondary));
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+.certifications-link-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-bright);
+    border-radius: 10px;
+    background: var(--bg-secondary);
+    color: var(--green);
+    font-size: 19px;
+}
+.certifications-link-copy { min-width: 0; text-align: left; overflow-wrap: anywhere; }
+.certifications-link-copy > span { display: block; font-size: 14px; font-weight: 600; line-height: 1.5; }
+.certifications-link-copy small { display: block; margin-top: 3px; color: var(--text-secondary); font-size: 11px; }
+.certifications-link-arrow { flex-shrink: 0; margin-left: auto; color: var(--green); font-size: 14px; }
+.certifications-link:hover, .certifications-link:focus-visible { border-color: var(--green); box-shadow: 0 0 20px var(--green-dim); }
+.certifications-link:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+@media (max-width: 480px) {
+    .certifications-link { padding: 14px 12px; gap: 10px; }
+    .certifications-link-icon { width: 32px; height: 32px; font-size: 16px; }
+    .certifications-link-copy > span { font-size: 13px; }
+    .certifications-link-arrow { font-size: 12px; }
+}
